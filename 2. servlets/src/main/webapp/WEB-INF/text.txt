@@ -1,0 +1,2 @@
+JSESSIONID/// {XHLRFRIFI4567} atribute {user_id, role, "autenticated"}
+JSESSIONID {XHLRFRIFI4567}

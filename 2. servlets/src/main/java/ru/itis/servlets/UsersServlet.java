@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -86,6 +87,8 @@ public class UsersServlet extends HttpServlet {
 //
 //                writer.write(resultHtml.toString());
         req.setAttribute("usersForJsp", users);
+        HttpSession httpSession= req.getSession();
+        System.out.println(httpSession.getAttribute("authenticated"));
         req.getRequestDispatcher("/jsp/users.jsp").forward(req,resp);
     }
 
