@@ -1,2 +1,21 @@
 JSESSIONID/// {XHLRFRIFI4567} atribute {user_id, role, "autenticated"}
 JSESSIONID {XHLRFRIFI4567}
+
+
+#BCrypt
+
+$2a$[cost]$[22 character salt][31 character hash]
+
+
+$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy
+пароль хранится в таком формате
+
+
+$2a$10$[N9qo8uLOickgx2ZMRZoMye][IjZAgcfl7p92ldGxad68LJZdL17lhWy]
+
+1) получили пароль при регистрации (!!!qwerty)
+2) Придумывается рандомная соль 22 символа
+3) соль соединяется с паролем (!!!qwertyN9qo8uLOickgx2ZMRZoMye)
+4) от обьединения берется хеш
+!!!qwertyN9qo8uLOickgx2ZMRZoMye от него берется хеш, который состоит из 31 символа
+5) сохраняется соль и итоговый хеш
