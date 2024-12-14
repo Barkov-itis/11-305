@@ -1,21 +1,23 @@
 package ru.itis.listener;
 
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import ru.itis.repositories.SignUpService;
-import ru.itis.repositories.SignUpServiceImpl;
+import ru.itis.service.SignUpService;
+import ru.itis.service.SignUpServiceImpl;
 import ru.itis.repositories.UsersRepository;
 import ru.itis.repositories.UsersRepositoryJdbcImpl;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
 
+@WebListener
 public class CustomServletContextListener implements ServletContextListener {
 
     private static final String DB_USERNAME = "postgres";
     private static final String DB_PASSWORD = "gjhfqr102";
     private static final String DB_URL = "jdbc:postgresql://localhost:5432/testdb_3";
-    private static final String DB_DRIVER = "org.postgres.Driver";
+    private static final String DB_DRIVER = "org.postgresql.Driver";
 
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
@@ -28,9 +30,11 @@ public class CustomServletContextListener implements ServletContextListener {
         dataSource.setUrl(DB_URL);
 
         UsersRepository usersRepository = new UsersRepositoryJdbcImpl(dataSource);
-        servletContext.setAttribute("usersRep", usersRepository);
         SignUpService signUpService = new SignUpServiceImpl(usersRepository);
+
+        servletContext.setAttribute("usersRep", usersRepository);
         servletContext.setAttribute("signUpService", signUpService);
+        System.out.println(servletContext.getAttribute("signUpService"));
     }
 
     @Override

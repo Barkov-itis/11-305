@@ -16,7 +16,7 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
     private DataSource dataSource;
 
     private static final String SQL_SELECT_ALL_FROM_DRIVER = "select * from driver";
-    private static final String SQL_INSERT_INTO_USERS = "insert into driver(login,password,first_name,last_name) values ";
+    private static final String SQL_INSERT_INTO_USERS = "insert into driver(login,password,first_name,last_name, age) values ";
 
     public UsersRepositoryJdbcImpl(DataSource dataSource) {
         this.dataSource = dataSource;
@@ -25,13 +25,14 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
     public void save(User entity) throws SQLException {
         Connection connection = dataSource.getConnection();
         Statement statement = connection.createStatement();
-        String sql = SQL_INSERT_INTO_USERS + "('" + entity.getLogin() + "', '" + entity.getPassword() + "', '" + entity.getName() + "', '" +entity.getSurname() + "');";
+        String sql = SQL_INSERT_INTO_USERS + "('" + entity.getLogin() + "', '" + entity.getPassword() + "', '" +
+                entity.getName() + "', '" +entity.getSurname() + "','" + entity.getAge() + "');";
         try {
             statement.executeUpdate(sql);
         } catch (SQLException e) {
             throw new IllegalArgumentException(e);
         }
-        System.out.println(entity.getLogin() + " " + entity.getPassword() + " " + entity.getName() + " " + entity.getSurname());
+        System.out.println(entity.getLogin() + " " + entity.getPassword() + " " + entity.getName() + " " + entity.getSurname() + " " + entity.getAge());
     }
 
     @Override
@@ -40,7 +41,7 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
     }
 
     @Override
-    public Optional<User> findByLogin(User login) {
+    public Optional<User> findById(User login) {
         return Optional.empty();
     }
 
