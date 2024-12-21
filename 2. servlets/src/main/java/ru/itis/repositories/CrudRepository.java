@@ -6,6 +6,6 @@ import java.util.Optional;
 
 public interface CrudRepository<T> {
     void save(T entity) throws SQLException;
-    List<T> findAll();
+    List<T> findAll() throws SQLException;
     Optional<T> findById(T login);
 }

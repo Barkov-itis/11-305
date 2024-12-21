@@ -36,8 +36,21 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
     }
 
     @Override
-    public List<User> findAll() {
-        return null;
+    public List<User> findAll() throws SQLException {
+        Connection connection = dataSource.getConnection();
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(SQL_SELECT_ALL_FROM_DRIVER);
+        List<User> users = new ArrayList<>();
+        while (resultSet.next()) {
+            User user = User.builder()
+                    .id(resultSet.getLong("id"))
+                    .name(resultSet.getString("first_name"))
+                    .surname(resultSet.getString("last_name"))
+                    .login(resultSet.getString("login"))
+                    .build();
+            users.add(user);
+        }
+        return users;
     }
 
     @Override
