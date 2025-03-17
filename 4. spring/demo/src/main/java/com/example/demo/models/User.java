@@ -6,8 +6,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Builder
+import java.util.ArrayList;
+import java.util.List;
 
+@Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,5 +22,11 @@ public class User {
 
     private String email;
     private String password;
+
+    @OneToMany(mappedBy = "author")
+    private List<Article> createdArticles;
+
+    @ManyToMany(mappedBy = "likes")
+    private List<Article> articles = new ArrayList<>();
 }
 
