@@ -27,4 +27,11 @@ public class ArticleController {
         model.addAttribute("articles", articleService.getByUser(userId));
         return "article_page";
     }
+
+    @PostMapping("/users/{user-id}/article/{article-id}/like")
+    @ResponseBody
+    public Object like(@PathVariable ("user-id") Long userId,
+                       @PathVariable ("article-id") Long articleId) {
+        return articleService.like(userId, articleId);
+    }
 }

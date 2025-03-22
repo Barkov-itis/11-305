@@ -16,7 +16,7 @@ import java.util.List;
 public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long articleId;
 
     private String name;
 
@@ -24,13 +24,13 @@ public class Article {
     private String text;
 
     @ManyToOne
-    @JoinColumn(name = "author_id")
+    @JoinColumn(name = "account_id")
     private User author;
 
     @ManyToMany
     @JoinTable(name = "article_likes",
-            joinColumns = @JoinColumn(name = "article_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
+            joinColumns = @JoinColumn(name = "article_id", referencedColumnName = "articleId"),
+            inverseJoinColumns = @JoinColumn(name = "account_id", referencedColumnName = "accountId"))
     private List<User> likes;
 
 }

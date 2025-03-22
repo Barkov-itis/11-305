@@ -39,4 +39,19 @@ public class ArticleServiceImpl implements ArticleService{
         articleRepository.save(newArticle);
         return ArticleDto.from(newArticle);
     }
+
+    @Override
+    public ArticleDto like(Long userId, Long articleId) {
+        Optional<User> user = usersRepository.findById(userId);
+        Optional<Article> article = articleRepository.findById(articleId);
+        if (articleRepository.existsByArticleIdAndLikesContaining(articleId,user.get())) {
+            article.get().getLikes().remove(user.get());
+        }
+        else {
+            article.get().getLikes().add(user.get());
+        }
+        System.out.println("**************************************");
+        articleRepository.save(article.get());
+        return ArticleDto.from(article.get());
+    }
 }

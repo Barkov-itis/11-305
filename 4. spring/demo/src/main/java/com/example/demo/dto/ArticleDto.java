@@ -27,7 +27,7 @@ public class ArticleDto {
             likesCount = 0;
         }
         return ArticleDto.builder()
-                .id(article.getId())
+                .id(article.getArticleId())
                 .text(article.getText())
                 .authorName(article.getAuthor().getEmail())
                 .likesCount(likesCount)

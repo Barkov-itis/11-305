@@ -8,6 +8,7 @@
     <title>Document</title>
 </head>
 <body>
+
 <div>
     <form action="/users/${.vars['user-id']}/articles" method="post">
 <#--        <input type="hidden" name="id" value="{user-id}"/>-->
@@ -21,12 +22,16 @@
         <tr>
             <th>Article</th>
             <th>text</th>
+            <th>click</th>
         </tr>
         <#list articles as article>
             <tr>
                 <td>${article.id}</td>
                 <td>${article.text}</td>
-            </tr>
+                <td><form action="/users/${.vars['user-id']}/article/${article.id}/like" method="post">
+                    <input type="submit" value="LIKE">
+                </form>
+                </td>
         </#list>
     </table>
 </div>
