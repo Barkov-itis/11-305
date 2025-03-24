@@ -18,8 +18,11 @@ public class SignUpController {
         return "sign_up_page";
     }
 
-    @PostMapping("/signUpPage")
+    @PostMapping("/signUp")
     public String signUp(UserForm form){
+        System.out.println("************");
+        System.out.println(form.getEmail());
+        System.out.println(form.getPassword());
         signUpService.addUser(form);
         return "redirect:/signUp";
     }

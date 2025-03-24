@@ -8,11 +8,9 @@
     <title>Document</title>
 </head>
 <body>
-<form action="/signUp" method="post">
+<form action="/signIn" method="post">
     <input name="email" type="email" placeholder="EMAIL">
     <input name="password" type="password" placeholder="PASSWORD">
-    <input name="firstName" type="text" placeholder="FIRSTNAME">
-    <input name="lastName" type="text" placeholder="LASTNAME">
     <input type="submit" value="SIGN UP">
 </form>
 </body>
