@@ -13,6 +13,7 @@
     <input name="password" type="password" placeholder="PASSWORD">
     <input name="firstName" type="text" placeholder="FIRSTNAME">
     <input name="lastName" type="text" placeholder="LASTNAME">
+    <input name="phone" type="text" placeholder="Phone">
     <input type="submit" value="SIGN UP">
 </form>
 </body>

@@ -50,11 +50,18 @@ public class ServiceServiceImpl implements ServiceService{
         if (size == null) {
             size = 3;
         }
-
+        System.out.println(page);
+        System.out.println(size);
+        System.out.println(sort);
         PageRequest pageRequest = PageRequest.of(page, size, sort);
         System.out.println(pageRequest);
         Page<Service> papersPage = serviceRepository.search(query, pageRequest);
         return ServiceDto.from(papersPage.getContent());
 
+    }
+
+    @Override
+    public Long countService() {
+        return serviceRepository.count();
     }
 }

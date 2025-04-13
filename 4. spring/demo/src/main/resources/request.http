@@ -9,4 +9,4 @@ Content-Type: application/json
 
 ###
 
-GET localhost:8080/papers/service/search?page=0&size=1
+GET localhost:8080/papers/service/search?page=0&size=3&q=ог

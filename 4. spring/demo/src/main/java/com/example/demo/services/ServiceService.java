@@ -9,4 +9,6 @@ import java.util.List;
 public interface ServiceService {
     ServiceDto addService(ServiceForm serviceForm);
     List<ServiceDto> search (Integer size, Integer page, String query, String sort, String direction);
+
+    public Long countService();
 }
