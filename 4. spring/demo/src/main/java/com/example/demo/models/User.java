@@ -25,6 +25,7 @@ public class User {
     private String firstName;
     private String lastName;
     private String phone;
+    private String confirmCode;
 
     @OneToMany(mappedBy = "author")
     private List<Article> createdArticles;
