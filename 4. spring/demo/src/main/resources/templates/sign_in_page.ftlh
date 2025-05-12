@@ -11,6 +11,7 @@
 <form action="/signIn" method="post">
     <input name="email" type="email" placeholder="EMAIL">
     <input name="password" type="password" placeholder="PASSWORD">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
     <input type="submit" value="SIGN UP">
 </form>
 </body>

@@ -41,6 +41,6 @@ public class SignUpServiceImpl implements SignUpService{
                 .build();
         usersRepository.save(user);
         //smsService.sendSms(user.getPhone(), "Регистрация выполнена!");
-        mailService.sendEmailForConfirm(user.getEmail(), user.getConfirmCode());
+        //mailService.sendEmailForConfirm(user.getEmail(), user.getConfirmCode());
     }
 }

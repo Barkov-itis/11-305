@@ -25,12 +25,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();
-        http.cors().disable();
+        http.csrf().ignoringAntMatchers("/signUp");
         http.authorizeRequests()
                 .antMatchers("/signUp").permitAll()
-                .antMatchers("/**").permitAll()
+//                .antMatchers("/**").permitAll()
                 .antMatchers("/users").hasAnyAuthority("ADMIN")
+                .antMatchers("/ajax").authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/signIn")
