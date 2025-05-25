@@ -9,7 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Component
@@ -40,7 +44,34 @@ public class SignUpServiceImpl implements SignUpService{
                 .confirmCode(UUID.randomUUID().toString())
                 .build();
         usersRepository.save(user);
+        writeErrorToFile(user);
         //smsService.sendSms(user.getPhone(), "Регистрация выполнена!");
         //mailService.sendEmailForConfirm(user.getEmail(), user.getConfirmCode());
     }
+
+//    private void writeErrorToFile(Exception e) {
+    private void writeErrorToFile(User e) {
+        String filePath = "./src/main/resources/static/errors.txt";
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
+            writer.write("\n[" + LocalDateTime.now() + "] Ошибка: ");
+            writer.write(e.toString());
+//            for (StackTraceElement ste : e.getStackTrace()) {
+//                writer.write("\t " + ste.toString());
+//            }
+        } catch (IOException ex) {
+            System.err.println("Ошибка при записи в файл лога ошибок: " + ex.getMessage());
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
